@@ -10,7 +10,7 @@ const socketEvents = require('./utils/socket');
 class Server {
 	constructor(cors) {
 		this.port = process.env.PORT || 3000;
-        //this.host = process.env.HOST || `ernestminichatsocket.herokuapp.com`;
+        //this.host = process.env.HOST || `localhost`;
 
         this.app = express();
         this.app.use(cors())
@@ -22,7 +22,7 @@ class Server {
 		new socketEvents(this.socket).socketConfig();
 		this.app.use(express.static(__dirname + '/uploads'));
         this.app.use(cors())
-        this.http.listen(this.port, () => {
+        this.http.listen(this.port,() => {
             console.log(`Listening on port:${this.port}`);
         });
     }

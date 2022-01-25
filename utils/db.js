@@ -16,7 +16,9 @@ class Db {
 			ssl: { rejectUnauthorized: false }
 			//debug: false
 		});
-		this.connection.connect().then(() => console.log('connected to database'))
+		this.connection.connect().then(() => {
+			console.log('connected to database')
+		})
   			.catch(err => console.error('connection error', err.stack))
 	}
 	query(sql, args) {
