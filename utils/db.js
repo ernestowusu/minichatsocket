@@ -7,10 +7,10 @@ class Db {
 	constructor() {
 		this.connection = new Client({
 			//connectionLimit: 100,
-			host: config.get('dbConfig.host'),
-			user: config.get('dbConfig.user'),
-			password: config.get('dbConfig.password'),
-			database: config.get('dbConfig.database'),
+			host: 'ec2-3-216-113-109.compute-1.amazonaws.com',
+			user: 'dslxpggkjhwcvv',
+			password: 'b1d1e5ea6f72eca0f6a4237e9b348c4a49015a43fb68ceaa029951767fbdbd1c',
+			database: 'd6jrel113aen55',
 			//debug: false
 		});
 	}
