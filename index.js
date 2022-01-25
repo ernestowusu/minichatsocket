@@ -8,9 +8,9 @@ const socketEvents = require('./utils/socket');
 
 
 class Server {
-	constructor() {
+	constructor(cors) {
 		this.port = process.env.PORT || 3000;
-        this.host = process.env.HOST || `ernestminichatsocket.herokuapp.com`;
+        this.host = process.env.HOST || `0.0.0.0`;
 
         this.app = express();
         this.app.use(cors())
@@ -27,5 +27,5 @@ class Server {
     }
 }
 
-const app = new Server();
+const app = new Server(cors);
 app.appRun();
