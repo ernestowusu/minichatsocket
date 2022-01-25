@@ -2,15 +2,18 @@
 
 const express = require('express');
 const http = require('http');
+var cors = require('cors')
 const socketio = require('socket.io');
 const socketEvents = require('./utils/socket');
 
+
 class Server {
 	constructor() {
-		this.port = process.env.PORT || 3002;
-        this.host = process.env.HOST || `localhost`;
+		this.port = process.env.PORT || 3000;
+        this.host = process.env.HOST || `ernestminichatsocket.herokuapp.com`;
 
         this.app = express();
+        this.app.use(cors())
         this.http = http.Server(this.app);
         this.socket = socketio(this.http);
 	}
