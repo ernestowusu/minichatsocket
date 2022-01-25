@@ -21,6 +21,7 @@ class Server {
 	appRun(){
 		new socketEvents(this.socket).socketConfig();
 		this.app.use(express.static(__dirname + '/uploads'));
+        this.app.use(cors())
         this.http.listen(this.port, () => {
             console.log(`Listening on port:${this.port}`);
         });

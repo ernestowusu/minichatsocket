@@ -11,6 +11,7 @@ class Db {
 			user: 'dslxpggkjhwcvv',
 			password: 'b1d1e5ea6f72eca0f6a4237e9b348c4a49015a43fb68ceaa029951767fbdbd1c',
 			database: 'd6jrel113aen55',
+			port:5432
 			//debug: false
 		});
 	}
