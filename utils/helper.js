@@ -21,13 +21,15 @@ class Helper{
 	}
 
 	async logoutUser(userSocketId){
-		return await this.db.query(`UPDATE users SET socket_id = ?, online= ? WHERE socket_id = ?`, ['','N',userSocketId]);
+		var query = `UPDATE users SET socket_id = '', online= 'N' WHERE socket_id = '${userSocketId}'`;
+		return await this.db.query(query);
 	}
 
 	getChatList(userId){
 		try {
+			var query = `SELECT id, name, socket_id, online, updated_at FROM users WHERE id != '${userId}'`;
 			return Promise.all([
-				this.db.query(`SELECT id, name, socket_id, online, updated_at FROM users WHERE id != ?`, [userId])
+				this.db.query(query)
 			]).then( (response) => {
 				return {
 					chatlist : response[0]
@@ -44,8 +46,8 @@ class Helper{
 
 	async insertMessages(params){
 		try {
-			return await this.db.query("INSERT INTO messages (`type`, `file_format`, `file_path`, `from_user_id`,`to_user_id`,`message`, `date`, `time`, `ip`) values (?,?,?,?,?,?,?,?,?)", [params.type, params.fileFormat, params.filePath, params.fromUserId, params.toUserId, params.message, params.date, params.time,params.ip]
-			);
+			var query = `INSERT INTO messages (type, file_format, file_path, from_user_id,to_user_id,message,date,time,ip) values ('${params.type}','${params.fileFormat}','${params.filePath}','${params.fromUserId}','${params.toUserId}','${params.message}','${params.date}','${params.time}','${params.ip}')`;
+			return await this.db.query(query);
 		} catch (error) {
 			console.warn(error);
 			return null;
@@ -54,14 +56,8 @@ class Helper{
 
 	async getMessages(userId, toUserId){
 		try {
-			return await this.db.query(
-				`SELECT id,from_user_id as fromUserId,to_user_id as toUserId,message,time,date,type,file_format as fileFormat,file_path as filePath FROM messages WHERE
-					(from_user_id = ? AND to_user_id = ? )
-					OR
-					(from_user_id = ? AND to_user_id = ? )	ORDER BY id ASC
-				`,
-				[userId, toUserId, toUserId, userId]
-			);
+			var query = `SELECT id,from_user_id as fromUserId,to_user_id as toUserId,message,time,date,type,file_format as fileFormat,file_path as filePath FROM messages WHERE (from_user_id = '${userId}' AND to_user_id = '${toUserId}' ) OR (from_user_id = '${toUserId}' AND to_user_id = '${userId}' ) ORDER BY id ASC`;
+			return await this.db.query(query);
 		} catch (error) {
 			console.warn(error);
 			return null;
