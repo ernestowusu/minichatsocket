@@ -102,6 +102,7 @@ class Socket{
             let userId = socket.request._query['id'];
             let userSocketId = socket.id;
             const response = await helper.addSocketId( userId, userSocketId);
+        
             if(response &&  response !== null){
                 next();
             }else{

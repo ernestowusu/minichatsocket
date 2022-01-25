@@ -12,7 +12,8 @@ class Helper{
 
 	async addSocketId(userId, userSocketId){
 		try {
-			return await this.db.query(`UPDATE users SET socket_id = ?, online= ? WHERE id = ?`, [userSocketId,'Y',userId]);
+			var query = `UPDATE users SET socket_id = '${userSocketId}', online='Y' WHERE id = '${userId}'`;
+			return await this.db.query(query);
 		} catch (error) {
 			console.log(error);
 			return null;
