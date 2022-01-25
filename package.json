@@ -15,9 +15,10 @@
     "moment": "^2.22.2",
     "mysql": "^2.15.0",
     "nodemon": "^1.18.3",
+    "pg-promise": "^10.11.1",
     "socket.io": "^2.0.4"
   },
   "engines": {
     "node": "8.x"
-  },
+  }
 }
