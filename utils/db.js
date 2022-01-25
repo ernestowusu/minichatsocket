@@ -21,6 +21,7 @@ class Db {
 		})
   			.catch(err => console.error('connection error', err.stack))
 	}
+	// checking if it works
 	query(sql, args) {
 		return new Promise((resolve, reject) => {
 			this.connection.query(sql, args, (err, rows) => {
