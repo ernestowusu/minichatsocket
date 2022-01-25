@@ -46,7 +46,8 @@ class Helper{
 
 	async insertMessages(params){
 		try {
-			var query = `INSERT INTO messages (type, file_format, file_path, from_user_id,to_user_id,message,date,time,ip) values ('${params.type}','${params.fileFormat}','${params.filePath}','${params.fromUserId}','${params.toUserId}','${params.message}','${params.date}','${params.time}','${params.ip}')`;
+			var query = `INSERT INTO messages(type, file_format, file_path, from_user_id,to_user_id,message,date,time,ip) VALUES('${params.type}','${params.fileFormat}','${params.filePath}','${params.fromUserId}','${params.toUserId}','${params.message}','${params.date}','${params.time}','${params.ip}')`;
+			console.log(query);
 			return await this.db.query(query);
 		} catch (error) {
 			console.warn(error);
